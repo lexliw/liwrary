@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -24,7 +25,7 @@
       background: linear-gradient(90deg, #ff4b2b, #110169);
       padding: 20px;
       text-align: center;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     }
 
     .site-title {
@@ -59,13 +60,14 @@
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
       gap: 20px;
+      justify-content: center;
     }
 
     .manga-card {
       background-color: #29293d;
       border-radius: 10px;
       overflow: hidden;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
       display: flex;
       flex-direction: column;
       transition: transform 0.2s ease;
@@ -117,6 +119,23 @@
       background: #ff684a;
     }
 
+    .breadcrumb {
+      margin: 10px auto;
+      max-width: 1200px;
+      padding: 10px 20px;
+      font-size: 0.9rem;
+      color: #ffffff;
+    }
+
+    .breadcrumb a {
+      color: #ff4b2b;
+      text-decoration: none;
+    }
+
+    .breadcrumb a:hover {
+      text-decoration: underline;
+    }
+
     @media (max-width: 600px) {
       .site-title {
         font-size: 1.5rem;
@@ -128,11 +147,16 @@
     }
   </style>
 </head>
+
 <body>
 
   <header>
     <div class="site-title">Liwrary</div>
   </header>
+  
+  <nav class="breadcrumb">
+    <a href="index.html">Home</a>
+  </nav>
 
   <div class="search-bar">
     <input type="text" id="search-input" placeholder="Pesquisar mangá ou manhwa..." onkeyup="filterMangas()" />
@@ -140,45 +164,34 @@
 
   <main>
     <div class="manga-list" id="manga-list">
-      <div class="manga-card" data-title="Solo Leveling">
-        <img src="imagens/solo-leveling.jpg" alt="Solo Leveling" class="manga-cover" />
-        <div class="manga-info">
-          <div class="manga-title">Solo Leveling</div>
-          <div class="manga-synopsis">Sung Jin-Woo, um caçador fraco, ganha o poder de aumentar de nível sozinho e se torna o mais poderoso caçador do mundo.</div>
-          <a href="https://lexliw.github.io/solo-leveling" class="read-button">Ler agora</a>
-        </div>
-      </div>
-      
-      <div class="manga-card" data-title="Solo Leveling: Ragnarok">
-        <img src="imagens/solo-leveling-ragnarok.jpg" alt="Solo Leveling: Ragnarok" class="manga-cover" />
-        <div class="manga-info">
-          <div class="manga-title">Solo Leveling: Ragnarok</div>
-          <div class="manga-synopsis">A história continua com o filho de Sung Jin-Woo, enfrentando novos desafios e inimigos em um mundo repleto de perigos.</div>
-          <a href="https://lexliw.github.io/solo-leveling-ragnarok/" class="read-button">Ler agora</a>
-        </div>
-      </div>
-      <!-- <div class="manga-card" data-title="Nano Machine">
-        <img src="imagens/nano-machine.webp" alt="Nano Machine" class="manga-cover" />
-        <div class="manga-info">
-          <div class="manga-title">Nano Machine</div>
-          <div class="manga-synopsis">Cheon Yeo-Woon, um jovem órfão da seita demoníaca, tem sua vida transformada quando uma nano máquina do futuro é implantada em seu corpo.</div>
-          <a href="https://lexliw.github.io/nano-machine/" class="read-button">Ler agora</a>
-        </div>
-      </div> -->
-
-      <div class="manga-card" data-title="Spy x Family">
-        <img src="imagens/spy-family.webp" alt="Spy x Family" class="manga-cover" />
-        <div class="manga-info">
-          <div class="manga-title">Spy x Family</div>
-          <div class="manga-synopsis">Um espião, uma assassina e uma telepata formam uma família falsa para completar suas missões, mas acabam criando laços reais.</div>
-          <a href="https://lexliw.github.io/spy-family/" class="read-button">Ler agora</a>
-        </div>
-      </div>
-
+      <!-- Os cards serão carregados dinamicamente -->
     </div>
   </main>
 
   <script>
+    async function loadMangas() {
+      const response = await fetch('manga-list.json');
+      const mangas = await response.json();
+      const mangaList = document.getElementById('manga-list');
+
+      mangas.forEach(manga => {
+        const mangaCard = document.createElement('div');
+        mangaCard.className = 'manga-card';
+        mangaCard.setAttribute('data-title', manga.title);
+
+        mangaCard.innerHTML = `
+          <img src="${manga.image}" alt="${manga.title}" class="manga-cover" />
+          <div class="manga-info">
+            <div class="manga-title">${manga.title}</div>
+            <div class="manga-synopsis">${manga.synopsis}</div>
+            <a href="${manga.link}" class="read-button">Ler agora</a>
+          </div>
+        `;
+
+        mangaList.appendChild(mangaCard);
+      });
+    }
+
     function filterMangas() {
       const input = document.getElementById('search-input');
       const filter = input.value.toLowerCase();
@@ -194,7 +207,11 @@
         }
       }
     }
+
+    // Carregar os mangás ao carregar a página
+    document.addEventListener('DOMContentLoaded', loadMangas);
   </script>
 
 </body>
+
 </html>

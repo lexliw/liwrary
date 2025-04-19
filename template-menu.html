@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -23,12 +24,29 @@
       background: linear-gradient(90deg, #ff4b2b, #110169);
       padding: 20px 10px;
       text-align: center;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     }
 
     .manga-title {
       font-size: 2rem;
       font-weight: bold;
+    }
+
+    .breadcrumb {
+      margin: 10px auto;
+      max-width: 1200px;
+      padding: 10px 20px;
+      font-size: 0.9rem;
+      color: #ffffff;
+    }
+
+    .breadcrumb a {
+      color: #ff4b2b;
+      text-decoration: none;
+    }
+
+    .breadcrumb a:hover {
+      text-decoration: underline;
     }
 
     main {
@@ -74,12 +92,15 @@
     }
   </style>
 </head>
+
 <body>
 
   <header>
     <div class="manga-title">--titulo-manga--</div>
   </header>
-
+  <nav class="breadcrumb">
+    <a href="https://lexliw.github.io/liwrary/">Home</a>
+  </nav>
   <main>
     <div class="chapter-list">
       <!--chapter-list-->
@@ -87,4 +108,5 @@
   </main>
 
 </body>
+
 </html>

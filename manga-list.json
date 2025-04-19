@@ -1,0 +1,27 @@
+[
+  {
+    "title": "Solo Leveling",
+    "image": "imagens/solo-leveling.jpg",
+    "synopsis": "Sung Jin-Woo, um caçador fraco, ganha o poder de aumentar de nível sozinho e se torna o mais poderoso caçador do mundo.",
+    "link": "https://lexliw.github.io/solo-leveling"
+  },
+  {
+    "title": "Solo Leveling: Ragnarok",
+    "image": "imagens/solo-leveling-ragnarok.jpg",
+    "synopsis": "A história continua com o filho de Sung Jin-Woo, enfrentando novos desafios e inimigos em um mundo repleto de perigos.",
+    "link": "https://lexliw.github.io/solo-leveling-ragnarok/"
+  },
+  {
+    "title": "Nano Machine",
+    "image": "imagens/nano-machine.webp",
+    "synopsis": "Cheon Yeo-Woon, um jovem órfão da seita demoníaca, tem sua vida transformada quando uma nano máquina do futuro é implantada em seu corpo.",
+    "link": "https://lexliw.github.io/nano-machine/"
+  },
+  {
+    "title": "Spy x Family",
+    "image": "imagens/spy-family.webp",
+    "synopsis": "Um espião, uma assassina e uma telepata formam uma família falsa para completar suas missões, mas acabam criando laços reais.",
+    "link": "https://lexliw.github.io/spy-family/"
+  }
+
+]
