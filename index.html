@@ -172,6 +172,9 @@
     async function loadMangas() {
       const response = await fetch('manga-list.json');
       const mangas = await response.json();
+
+      mangas.sort((a, b) => a.title.localeCompare(b.title));
+
       const mangaList = document.getElementById('manga-list');
 
       mangas.forEach(manga => {
